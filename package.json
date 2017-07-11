@@ -17,6 +17,7 @@
   },
   "homepage": "https://github.com/f96q/danny-team-bot#readme",
   "dependencies": {
-    "@slack/client": "^3.10.0"
+    "@slack/client": "^3.10.0",
+    "request": "^2.81.0"
   }
 }
