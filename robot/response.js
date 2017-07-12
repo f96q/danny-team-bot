@@ -9,16 +9,16 @@ class Response {
     this.userName = userName
   }
 
-  send(message) {
-    this.postMessage(message)
+  send(message, options) {
+    this.postMessage(message, options)
   }
 
-  reply(message) {
-    this.postMessage(`<@${this.userName}>${message}`)
+  reply(message, options) {
+    this.postMessage(`<@${this.userName}>${message}`, options)
   }
 
-  postMessage(message) {
-    this.web.chat.postMessage(this.channel, message, (error, response) => {
+  postMessage(message, options) {
+    this.web.chat.postMessage(this.channel, message, options, (error, response) => {
       if (error) { console.log(error); }
     })
   }
