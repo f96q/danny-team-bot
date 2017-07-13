@@ -1,3 +1,4 @@
+TZ: Asia/Tokyo
 SLACK_API_TOKEN: xxxxxxxxxxxxxxxxxxxxxx
 SCHEDULE_POST_CHANNEL: general
 BOT_ID: U111111
