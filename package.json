@@ -1,5 +1,5 @@
 {
-  "name": "danny-team-bot",
+  "name": "serverless-bot",
   "version": "1.0.0",
   "description": "",
   "main": "handler.js",
@@ -8,14 +8,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/f96q/danny-team-bot.git"
+    "url": "git+https://github.com/f96q/serverless-bot.git"
   },
   "author": "danny",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/f96q/danny-team-bot/issues"
+    "url": "https://github.com/f96q/serverless-bot/issues"
   },
-  "homepage": "https://github.com/f96q/danny-team-bot#readme",
+  "homepage": "https://github.com/f96q/serverless-bot#readme",
   "dependencies": {
     "@slack/client": "^3.10.0",
     "moment": "^2.18.1",
