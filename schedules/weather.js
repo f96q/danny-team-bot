@@ -17,7 +17,7 @@ module.exports.weather = (event, context, callback) => {
   }
   request({url: 'http://api.openweathermap.org/data/2.5/forecast', qs: query, json: true}, (error, httpResponse, body) => {
     const attachments = []
-    filter(body.list).slice(0, 4).forEach(item => {
+    filter(body.list).slice(0, 5).forEach(item => {
       const attachment = {
         thumb_url: `http://openweathermap.org/img/w/${item.weather[0].icon}.png`,
         title: moment.unix(item.dt).format('HH:mm'),
