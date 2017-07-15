@@ -22,12 +22,39 @@ plugins:
 
 custom:
   stage: "${opt:stage, self:provider.stage}"
+  dynamodb:
+  start:
+    port: 8000
+    inMemory: true
+    migration: true
+  brainsTable: "${self:service}-${self:custom.stage}-brains"
+
+resources:
+  Resources:
+    usersTable:
+      Type: AWS::DynamoDB::Table
+      Properties:
+        TableName: ${self:custom.brainsTable}
+        KeySchema:
+          - AttributeName: key
+            KeyType: HASH
+        AttributeDefinitions:
+          - AttributeName: key
+            AttributeType: S
+        ProvisionedThroughput:
+          ReadCapacityUnits: 1
+          WriteCapacityUnits: 1
 
 provider:
   name: aws
   runtime: nodejs6.10
   environment: ${file(env-${self:custom.stage}.yml)}
   region: ap-northeast-1
+  iamRoleStatements:
+    - Effect: Allow
+      Action:
+        - dynamodb:*
+      Resource: "arn:aws:dynamodb:${self:provider.region}:*:table/${self:service}-${self:custom.stage}-*"
 
 # you can overwrite defaults here
 #  stage: dev

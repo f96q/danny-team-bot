@@ -1,10 +1,12 @@
 'use strict';
 
 const Command = require('./command')
+const Brain = require('./brain')
 
 class Robot {
   constructor() {
     this.commands = []
+    this.brain = new Brain
   }
 
   hear(regexp, help, callback) {
