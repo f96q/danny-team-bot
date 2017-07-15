@@ -19,7 +19,7 @@ class Response {
 
   postMessage(message, options) {
     this.web.chat.postMessage(this.channel, message, options, (error, response) => {
-      if (error) { console.log(error); }
+      if (error) { console.error(error) }
     })
   }
 
@@ -37,6 +37,10 @@ class Response {
       }
       const memberIds = response.channel.members
       web.users.list((error, response) => {
+        if (error) {
+          callback(error, null)
+          return
+        }
         const memberId = random(memberIds.filter(memberId => { return memberId != process.env.BOT_ID }))
         const member = response.members.find(member => { return member.id == memberId })
         callback(null, member)

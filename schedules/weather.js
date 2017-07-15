@@ -16,6 +16,10 @@ module.exports.weather = (event, context, callback) => {
     units: 'metric'
   }
   request({url: 'http://api.openweathermap.org/data/2.5/forecast', qs: query, json: true}, (error, httpResponse, body) => {
+    if (error) {
+      console.error(error)
+      return
+    }
     const attachments = []
     filter(body.list).slice(0, 5).forEach(item => {
       const attachment = {
