@@ -18,6 +18,7 @@
   "homepage": "https://github.com/f96q/serverless-bot#readme",
   "dependencies": {
     "@slack/client": "^3.10.0",
+    "aws-sdk": "^2.85.0",
     "moment": "^2.18.1",
     "request": "^2.81.0"
   }
