@@ -10,7 +10,9 @@ class Command {
   call(message, response) {
     if (message.match(this.regexp)) {
       this.callback(response)
+      return true
     }
+    return false
   }
 }
 

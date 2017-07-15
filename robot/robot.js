@@ -12,9 +12,12 @@ class Robot {
   }
 
   call(message, response) {
-    this.commands.forEach((command) => {
-      command.call(message, response)
-    })
+    const called = this.commands.map(command => {
+      return command.call(message, response)
+    }).find(results => { return results })
+    if (!called) {
+      response.send('NOP')
+    }
   }
 }
 
