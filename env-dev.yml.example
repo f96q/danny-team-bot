@@ -5,3 +5,4 @@ BOT_ID: U111111
 OPEN_WEATHER_MAP_API_KEY: xxxxxxxxxxxxxxxxxxxxxx
 DYNAMODB_ENDPINT: http://localhost:8000
 BRAINS_TABLE: ${self:custom.brainsTable}
+RSS_URLS: 'http://example.com,http://example2.com'

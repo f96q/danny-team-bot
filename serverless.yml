@@ -113,6 +113,10 @@ functions:
     handler: schedules/weather.weather
     events:
       - schedule: cron(0 22 * * ? *)
+  rss:
+    handler: schedules/rss.rss
+    events:
+      - schedule: cron(0 01 * * ? *)
 
 #    The following are a few example events you can configure
 #    NOTE: Please make sure to change your handler code to work with those events
