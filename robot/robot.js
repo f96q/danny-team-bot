@@ -1,5 +1,6 @@
 'use strict';
 
+const Response = require('./response')
 const Command = require('./command')
 const Brain = require('./brain')
 
@@ -13,11 +14,12 @@ class Robot {
     this.commands.push(new Command(regexp, help, callback))
   }
 
-  call(message, response) {
+  call(channelId, userName, message) {
     const called = this.commands.map(command => {
-      return command.call(message, response)
+      return command.call(channelId, userName, message)
     }).find(results => { return results })
     if (!called) {
+      const response = new Response(channelId, userName, null)
       response.send('NOP')
     }
   }

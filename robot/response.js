@@ -3,10 +3,11 @@
 const WebClient = require('@slack/client').WebClient
 
 class Response {
-  constructor(channel, userName) {
+  constructor(channel, userName, match) {
     this.web = new WebClient(process.env.SLACK_API_TOKEN)
     this.channel = channel
     this.userName = userName
+    this.match = match
   }
 
   send(message, options) {
