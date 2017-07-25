@@ -26,7 +26,11 @@ class Brain {
         callback(error, null)
         return
       }
-      callback(null, JSON.parse(data.Item.value))
+      if (data.Item) {
+        callback(null, JSON.parse(data.Item.value))
+      } else {
+        callback(null, null)
+      }
     })
   }
 
