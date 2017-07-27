@@ -11,7 +11,7 @@ class Brain {
   set(key, value, callback) {
     const params = {
       TableName: this.tableName,
-      Item: {key: key, value: JSON.stringify(value) }
+      Item: {key: key, value: value }
     }
     this.client.put(params, callback)
   }
@@ -27,7 +27,7 @@ class Brain {
         return
       }
       if (data.Item) {
-        callback(null, JSON.parse(data.Item.value))
+        callback(null, data.Item.value)
       } else {
         callback(null, null)
       }
