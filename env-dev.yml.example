@@ -4,3 +4,4 @@ SCHEDULE_POST_CHANNEL: general
 BOT_ID: U111111
 OPEN_WEATHER_MAP_API_KEY: xxxxxxxxxxxxxxxxxxxxxx
 BRAINS_TABLE: ${self:custom.brainsTable}
+SLS_DEBUG: true
