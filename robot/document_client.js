@@ -4,12 +4,12 @@ const AWS = require('aws-sdk')
 
 class DocumentClient extends AWS.DynamoDB.DocumentClient {
   constructor() {
-    if (process.env.DYNAMODB_ENDPINT) {
+    if (process.env.IS_LOCAL == 'true') {
       const options = {
         accessKeyId: 'accessKeyId',
         secretAccessKey: 'secretAccessKey',
         region: 'localhost',
-        endpoint: process.env.DYNAMODB_ENDPINT
+        endpoint: 'http://localhost:8000'
       }
       super(options)
     } else {
