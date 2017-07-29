@@ -2,8 +2,10 @@
 
 const request = require('request')
 const FeedParser = require('feedparser')
+const Brain = require('../robot/brain')
 const Response = require('../robot/response')
 const SEND_ITEM_SIZE = 5
+const BRAIN_KEY_RSS = require('../constants').BRAIN_KEY_RSS
 
 const send = (items) => {
   const response = new Response(process.env.SCHEDULE_POST_CHANNEL)
@@ -46,7 +48,15 @@ const fetch = (url) => {
 }
 
 module.exports.rss = (event, context, callback) => {
-  process.env.RSS_URLS.split(',').forEach(url => {
-    fetch(url)
+  const brain = new Brain
+  brain.get(BRAIN_KEY_RSS, (error, data) => {
+    if (error) {
+      console.error(error)
+      return
+    }
+    const feeds = data || []
+    feeds.forEach(feed => {
+      fetch(feed.url)
+    })
   })
 }
