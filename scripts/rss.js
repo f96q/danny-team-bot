@@ -77,7 +77,7 @@ module.exports = robot => {
         console.error(error)
         return
       }
-      const feeds = (data || []).filter(feed => { feed.url != url })
+      const feeds = (data || []).filter(feed => { return feed.url != url })
       robot.brain.set(BRAIN_KEY_RSS, feeds, (error, data) => {
         if (error) {
           console.error(error)
