@@ -1,10 +1,10 @@
 'use strict';
 
-const WebClient = require('@slack/client').WebClient
+const Adapter = require('./adapter')
 
 class Response {
   constructor(channel, userName, match) {
-    this.web = new WebClient(process.env.SLACK_API_TOKEN)
+    this.adapter = new Adapter
     this.channel = channel
     this.userName = userName
     this.match = match
@@ -19,9 +19,7 @@ class Response {
   }
 
   postMessage(message, options) {
-    this.web.chat.postMessage(this.channel, message, options, (error, response) => {
-      if (error) { console.error(error) }
-    })
+    this.adapter.send(this.channel, message, options)
   }
 
   random(items) {
@@ -29,23 +27,14 @@ class Response {
   }
 
   randomChannelUser(callback) {
-    const random = this.random
-    const web = this.web
-    web.channels.info(this.channel, (error, response) => {
+    this.adapter.users(this.channel, (error, response) => {
       if (error) {
         callback(error, null)
         return
       }
-      const memberIds = response.channel.members
-      web.users.list((error, response) => {
-        if (error) {
-          callback(error, null)
-          return
-        }
-        const memberId = random(memberIds.filter(memberId => { return memberId != process.env.BOT_ID }))
-        const member = response.members.find(member => { return member.id == memberId })
-        callback(null, member)
-      })
+      const memberId = this.random(response.memberIds.filter(memberId => { return memberId != process.env.BOT_ID }))
+      const member = response.members.find(member => { return member.id == memberId })
+      callback(null, member)
     })
   }
 }
