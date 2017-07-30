@@ -105,6 +105,12 @@ functions:
     handler: schedules/lunch.lunch
     events:
       - schedule: cron(0 04 * * ? *)
+
+  event:
+    handler: schedules/event.event
+    events:
+      - schedule: cron(0 12 * * ? *)
+
   night:
     handler: schedules/night.night
     events:
