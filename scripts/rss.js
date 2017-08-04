@@ -40,7 +40,7 @@ module.exports = robot => {
     })
   })
 
-  robot.hear(/rss add (.*)/, 'rss add <url>', response => {
+  robot.hear(/rss add <(.*)>/, 'rss add <url>', response => {
     const url = response.match[1]
     robot.brain.get(BRAIN_KEY_RSS, (error, data) => {
       if (error) {
@@ -70,7 +70,7 @@ module.exports = robot => {
     })
   })
 
-  robot.hear(/rss remove (.*)/, 'rss remove <url>', response => {
+  robot.hear(/rss remove <(.*)>/, 'rss remove <url>', response => {
     const url = response.match[1]
     robot.brain.get(BRAIN_KEY_RSS, (error, data) => {
       if (error) {
