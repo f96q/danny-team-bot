@@ -1,5 +1,7 @@
 'use strict';
 
+require('../configure.js')
+
 const Brain = require('../robot/brain')
 const Response = require('../robot/response')
 const BRAIN_KEY_EVENT = require('../constants').BRAIN_KEY_EVENT

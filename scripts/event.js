@@ -27,7 +27,7 @@ module.exports = robot => {
         return `${WDAY_NAMES[event.wday]}: ${event.title}`
       })
       if (events.length == 0) {
-        response.send('ないよ')
+        response.send(__('shared.empty'))
       } else {
         response.send(events.join("\n"))
       }
@@ -38,7 +38,7 @@ module.exports = robot => {
     const wday = WDAYS[response.match[1]]
     const title = response.match[2]
     if (wday == null) {
-      response.send('曜日を正しく指定して')
+      response.send(__('scripts.event.invalid_wday'))
       return
     }
     robot.brain.get(BRAIN_KEY_EVENT, (error, data) => {
@@ -49,7 +49,7 @@ module.exports = robot => {
       const events = data || []
       const event = events.find(event => { return event.wday == wday && event.title == title })
       if (event) {
-        response.send('すでに登録済みよ')
+        response.send(__('shared.exist'))
         return
       }
       events.push({ wday: wday, title: title })
@@ -58,7 +58,7 @@ module.exports = robot => {
           console.error(error)
           return
         }
-        response.send('追加したよ')
+        response.send(__('shared.added'))
       })
     })
   })
@@ -67,7 +67,7 @@ module.exports = robot => {
     const wday = WDAYS[response.match[1]]
     const title = response.match[2]
     if (wday == null) {
-      response.send('曜日を正しく指定して')
+      response.send(__('scripts.event.invalid_wday'))
       return
     }
     robot.brain.get(BRAIN_KEY_EVENT, (error, data) => {
@@ -81,7 +81,7 @@ module.exports = robot => {
           console.error(error)
           return
         }
-        response.send('削除したよ')
+        response.send(__('shared.removed'))
       })
     })
   })
@@ -92,7 +92,7 @@ module.exports = robot => {
         console.error(error)
         return
       }
-      response.send('クリアしたよ')
+      response.send(__('shared.clear'))
     })
   })
 }

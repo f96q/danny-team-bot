@@ -33,7 +33,7 @@ module.exports = robot => {
       }
       const feeds = data || []
       if (feeds.length == 0) {
-        response.send('ないよ')
+        response.send(__('shared.empty'))
       } else {
         response.send(feeds.map(feed => { return feed.url }).join("\n"))
       }
@@ -44,18 +44,18 @@ module.exports = robot => {
     const url = response.match[1]
     robot.brain.get(BRAIN_KEY_RSS, (error, data) => {
       if (error) {
-        response.send('登録できないよ')
+        response.send(__('shared.not_add'))
         return
       }
       const feeds = data || []
       const feed = feeds.find(feed => { return feed.url == url })
       if (feed) {
-        response.send('すでに登録済みよ')
+        response.send(__('shared.exist'))
         return
       }
       checkFeed(url, error => {
         if (error) {
-          response.send('登録できないよ')
+          response.send(__('shared.not_add'))
           return
         }
         feeds.push({ url: url })
@@ -64,7 +64,7 @@ module.exports = robot => {
             console.error(error)
             return
           }
-          response.send('登録したよ')
+          response.send(__('shared.added'))
         })
       })
     })
@@ -83,7 +83,7 @@ module.exports = robot => {
           console.error(error)
           return
         }
-        response.send('削除したよ')
+        response.send(__('shared.removed'))
       })
     })
   })

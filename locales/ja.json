@@ -1,0 +1,36 @@
+{
+  "shared": {
+    "empty" : "ないよ",
+    "not_add": "追加できないよ",
+    "added": "追加したよ",
+    "exist": "すでに追加されてるよ",
+    "removed": "削除したよ",
+    "clear": "クリアしたよ"
+  },
+  "scripts": {
+    "who": {
+      "message": "<@{{name}}>の出番"
+    },
+    "event": {
+      "invalid_wday": "曜日は不正な値よ"
+    }
+  },
+  "schedules": {
+    "billing": {
+      "no_data_point" : "データーが取れないよ",
+      "aws_billing" : "AWS利用料"
+    },
+    "lunch": {
+      "message": "ランチにしましょう"
+    },
+    "morning": {
+      "message": "おはようパトラッシュ"
+    },
+    "night": {
+      "message": "おやすみパトラッシュ"
+    },
+    "weather": {
+      "message": "{{name}}の天気予報"
+    }
+  }
+}

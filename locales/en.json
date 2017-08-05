@@ -1,0 +1,36 @@
+{
+  "shared": {
+    "empty" : "Empty",
+    "not_add": "Not add",
+    "added": "Added",
+    "exist": "Exist",
+    "removed": "Removed",
+    "clear": "Clear"
+  },
+  "scripts": {
+    "who": {
+      "message": "<@{{name}}>"
+    },
+    "event": {
+      "invalid_wday": "Invalid wday"
+    }
+  },
+  "schedules": {
+    "billing": {
+      "no_data_point" : "No data point",
+      "aws_billing" : "AWS billing"
+    },
+    "lunch": {
+      "message": "Lunch"
+    },
+    "morning": {
+      "message": "Good morning"
+    },
+    "night": {
+      "message": "Good night"
+    },
+    "weather": {
+      "message": "Weather {{name}}"
+    }
+  }
+}

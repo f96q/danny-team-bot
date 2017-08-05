@@ -1,5 +1,7 @@
 'use strict';
 
+require('./configure.js')
+
 const pathResolve = require('path').resolve
 const querystring = require('querystring')
 const fs = require('fs')

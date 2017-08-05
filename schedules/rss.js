@@ -1,5 +1,7 @@
 'use strict';
 
+require('../configure.js')
+
 const request = require('request')
 const FeedParser = require('feedparser')
 const Brain = require('../robot/brain')

@@ -1,5 +1,7 @@
 'use strict';
 
+require('../configure.js')
+
 const request = require('request')
 const moment = require('moment')
 const Response = require('../robot/response')
@@ -29,6 +31,6 @@ module.exports.weather = (event, context, callback) => {
       }
     })
     const response = new Response(process.env.SCHEDULE_POST_CHANNEL)
-    response.send(`${body.city.name}の天気予報`, {attachments: attachments})
+    response.send(__('schedules.weather.message', {name: body.city.name}), {attachments: attachments})
   })
 }

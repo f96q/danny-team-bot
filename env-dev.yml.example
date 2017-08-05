@@ -6,3 +6,4 @@ OPEN_WEATHER_MAP_API_KEY: xxxxxxxxxxxxxxxxxxxxxx
 BRAINS_TABLE: ${self:custom.brainsTable}
 SLS_DEBUG: true
 ADAPTER: slack
+DEFAULT_LOCALE: ja

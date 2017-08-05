@@ -1,5 +1,7 @@
 'use strict';
 
+require('../configure.js')
+
 const AWS = require('aws-sdk')
 const moment = require('moment')
 const Response = require('../robot/response')
@@ -34,13 +36,13 @@ module.exports.billing = (event, context, callback) => {
     const response = new Response(process.env.SCHEDULE_POST_CHANNEL)
     const dataPoints = data['Datapoints']
     if (dataPoints.length == 0) {
-      response.send('データーが取れないよ')
+      response.send(__('schedules.billing.no_data_point'))
       return
     }
     const letestDataPoint = dataPoints[dataPoints.length - 1]
     const attachments = [
       {
-        title: 'AWS利用料',
+        title: __('schedules.billing.aws_billing'),
         text: `$${letestDataPoint['Maximum']}`
       }
     ]
