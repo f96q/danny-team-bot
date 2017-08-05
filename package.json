@@ -20,6 +20,7 @@
     "@slack/client": "^3.10.0",
     "aws-sdk": "^2.85.0",
     "feedparser": "^2.2.1",
+    "i18n": "^0.8.3",
     "moment": "^2.18.1",
     "request": "^2.81.0",
     "serverless-dynamodb-local": "^0.2.22"
