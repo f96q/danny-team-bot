@@ -55,6 +55,10 @@ provider:
       Action:
         - dynamodb:*
       Resource: "arn:aws:dynamodb:${self:provider.region}:*:table/${self:service}-${self:custom.stage}-*"
+    - Effect: Allow
+      Action:
+        - cloudwatch:GetMetricStatistics
+      Resource: "*"
 
 # you can overwrite defaults here
 #  stage: dev
@@ -101,6 +105,12 @@ functions:
     handler: schedules/morning.morning
     events:
       - schedule: cron(0 00 * * ? *)
+
+  billing:
+    handler: schedules/billing.billing
+    events:
+      - schedule: cron(0 02 * * ? *)
+
   lunch:
     handler: schedules/lunch.lunch
     events:
