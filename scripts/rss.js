@@ -40,7 +40,7 @@ module.exports = robot => {
               text: item.link
             }
           })
-          response.send(null, {attachments: attachments})
+          response.send(feed.url, { attachments: attachments })
         })
       })
     })

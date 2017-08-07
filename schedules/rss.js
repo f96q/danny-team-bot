@@ -9,7 +9,7 @@ const Feed = require('../lib/feed')
 const BRAIN_KEY_RSS = require('../constants').BRAIN_KEY_RSS
 const RSS_FEED_ITEM_SIZE = require('../constants').RSS_FEED_ITEM_SIZE
 
-const send = (items) => {
+const send = (url, items) => {
   const response = new Response(process.env.SCHEDULE_POST_CHANNEL)
   const attachments = items.slice(0, RSS_FEED_ITEM_SIZE - 1).map(item => {
     return {
@@ -17,7 +17,7 @@ const send = (items) => {
       text: item.link
     }
   })
-  response.send(null, {attachments: attachments})
+  response.send(url, { attachments: attachments })
 }
 
 module.exports.rss = (event, context, callback) => {
@@ -34,7 +34,7 @@ module.exports.rss = (event, context, callback) => {
           console.error(error)
           return
         }
-        send(items)
+        send(feed.url, items)
       })
     })
   })
