@@ -1,28 +1,9 @@
 'use strict';
 
-const request = require('request')
-const FeedParser = require('feedparser')
 const BRAIN_KEY_RSS = require('../constants').BRAIN_KEY_RSS
+const RSS_FEED_ITEM_SIZE = require('../constants').RSS_FEED_ITEM_SIZE
 
-const checkFeed = (url, callback) => {
-  const feedParser = new FeedParser
-  const req = request(url)
-  req.on('response', (response) => {
-    if (response.statusCode != 200) {
-      callback(new Error(response.statusCode))
-    } else {
-      req.pipe(feedParser)
-    }
-  })
-
-  feedParser.on('readable', () => {
-    callback(null)
-  })
-
-  feedParser.on('error', (error) => {
-    callback(error)
-  })
-}
+const Feed = require('../lib/feed')
 
 module.exports = robot => {
   robot.hear(/rss list/, 'rss list', response => {
@@ -40,6 +21,31 @@ module.exports = robot => {
     })
   })
 
+  robot.hear(/rss fetch/, 'rss fetch', response => {
+    robot.brain.get(BRAIN_KEY_RSS, (error, data) => {
+      if (error) {
+        console.error(error)
+        return
+      }
+      const feeds = data || []
+      feeds.forEach(feed => {
+        Feed.fetch(feed.url, (error, items) => {
+          if (error) {
+            console.error(error)
+            return
+          }
+          const attachments = items.slice(0, RSS_FEED_ITEM_SIZE - 1).map(item => {
+            return {
+              title: item.title,
+              text: item.link
+            }
+          })
+          response.send(null, {attachments: attachments})
+        })
+      })
+    })
+  })
+
   robot.hear(/rss add <(.*)>/, 'rss add <url>', response => {
     const url = response.match[1]
     robot.brain.get(BRAIN_KEY_RSS, (error, data) => {
@@ -53,7 +59,7 @@ module.exports = robot => {
         response.send(__('shared.exist'))
         return
       }
-      checkFeed(url, error => {
+      Feed.check(url, error => {
         if (error) {
           response.send(__('shared.not_add'))
           return
