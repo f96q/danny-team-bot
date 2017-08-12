@@ -4,7 +4,7 @@ const DocumentClient = require('./document_client')
 
 class Brain {
   constructor() {
-    this.tableName = process.env.BRAINS_TABLE
+    this.tableName = `${process.env.SERVICE}-${process.env.STAGE}-brains`
     this.client = new DocumentClient
   }
 

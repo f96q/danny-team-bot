@@ -27,14 +27,13 @@ custom:
     port: 8000
     inMemory: true
     migration: true
-  brainsTable: "${self:service}-${self:custom.stage}-brains"
 
 resources:
   Resources:
     usersTable:
       Type: AWS::DynamoDB::Table
       Properties:
-        TableName: ${self:custom.brainsTable}
+        TableName: ${self:service}-${self:custom.stage}-brains
         KeySchema:
           - AttributeName: key
             KeyType: HASH
