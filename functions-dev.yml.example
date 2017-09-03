@@ -1,0 +1,42 @@
+robot:
+  handler: robot.robot
+  events:
+    - http:
+        path: robot
+        method: post
+        cors: true
+
+morning:
+  handler: schedules/morning.morning
+  events:
+    - schedule: cron(0 00 * * ? *)
+
+rss:
+  handler: schedules/rss.rss
+  events:
+    - schedule: cron(0 01 * * ? *)
+
+billing:
+  handler: schedules/billing.billing
+  events:
+    - schedule: cron(0 02 * * ? *)
+
+lunch:
+  handler: schedules/lunch.lunch
+  events:
+    - schedule: cron(0 04 * * ? *)
+
+event:
+  handler: schedules/event.event
+  events:
+    - schedule: cron(0 12 * * ? *)
+
+night:
+  handler: schedules/night.night
+  events:
+    - schedule: cron(0 17 * * ? *)
+
+weather:
+  handler: schedules/weather.weather
+  events:
+    - schedule: cron(0 22 * * ? *)
