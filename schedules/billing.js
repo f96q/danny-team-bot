@@ -18,6 +18,10 @@ module.exports.billing = (event, context, callback) => {
     }
     const fields = results.filter(result => {
       return result.name != null
+    }).sort((result1, result2) => {
+      const charge1 = result1.data['Datapoints'][0]['Maximum']
+      const charge2 = result2.data['Datapoints'][0]['Maximum']
+      return (charge2 - charge1)
     }).map(result => {
       const datapoint = result.data['Datapoints'][0]
       return { title: result.name, value: `$${datapoint['Maximum']}`, short: true }
