@@ -13,6 +13,9 @@
     },
     "event": {
       "invalid_wday": "Invalid wday"
+    },
+    "choise": {
+      "message": "{{choise}} selected"
     }
   },
   "schedules": {

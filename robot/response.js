@@ -1,6 +1,7 @@
 'use strict';
 
 const Adapter = require('./adapter')
+const Util = require('../util')
 
 class Response {
   constructor(channel, userName, match) {
@@ -23,7 +24,7 @@ class Response {
   }
 
   random(items) {
-    return items[Math.floor(Math.random() * items.length)]
+    return Util.random(items)
   }
 
   randomChannelUser(callback) {

@@ -13,6 +13,9 @@
     },
     "event": {
       "invalid_wday": "曜日は不正な値よ"
+    },
+    "choise": {
+      "message": "{{choise}}を選んだよ"
     }
   },
   "schedules": {
